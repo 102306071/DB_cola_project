@@ -1,0 +1,17 @@
+<%= form_for(@cola) do |f| %>
+  <% if @cola.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cola.errors.count, "error") %> prohibited this cola from being saved:</h2>
+
+      <ul>
+      <% @cola.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
