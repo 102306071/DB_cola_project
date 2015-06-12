@@ -1,44 +1,49 @@
-如果無法正常顯示 請按 <%= link_to  ""  do%><i class="glyphicon glyphicon-refresh">Refresh</i> <%end%>
-<button type="button" class="btn btn-info pull-right" onclick="printPage()" /><i class="glyphicon glyphicon-print" aria-hidden="true"></i> Print this page </button>
+<h4>如果無法正常顯示 請按 <%= link_to  ""  do%><i class="glyphicon glyphicon-refresh">Refresh</i> <%end%></h4>
+<button type="button" class="btn btn-warning pull-right" onclick="printPage()" /><i class="glyphicon glyphicon-print" aria-hidden="true"></i> Print this page </button>
 
 
 <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
 <script type="text/javascript"  src="http://code.highcharts.com/highcharts.js"></script>
 <script type= "text/javascript">
   $(function () {
-    $('#container').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false
-        },
-        title: {
-            text:
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
+
+    $(document).ready(function () {
+
+        // Build the chart
+        $('#container').highcharts({
+            chart: {
+                plotBackgroundColor: "#BBFFEE",
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
                 }
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: 'Browser share',
-            data: <%= @data.to_json.html_safe%>
-        }]
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                data: <%= @data.to_json.html_safe%>
+            }]
+        });
     });
+
 });
 </script>
+
+
 
 
 
