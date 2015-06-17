@@ -20,7 +20,7 @@ class Customer < ActiveRecord::Base
 	
 	def self.dataGender
 		query = <<-SQL
-		select Pax_Gender, Count(*) as total from a05b01_paxdata where Pax_Gender ='男' or Pax_Gender='女' group by Pax_Gender
+		select Pax_Gender, Count(Tour_Code) as total from a05b01_paxdata where Pax_Gender ='男' or Pax_Gender='女' group by Pax_Gender
 		SQL
 
 		data = self.find_by_sql(query)
@@ -30,7 +30,7 @@ class Customer < ActiveRecord::Base
 
 	def self.dataPaxType
 		query = <<-SQL
-		select Pax_Type, Count(*) as total from a05b01_paxdata where Pax_Type is not null group by Pax_Type
+		select Pax_Type, Count(Tour_Code) as total from a05b01_paxdata where Pax_Type is not null group by Pax_Type order by total desc
 		SQL
 
 		data = self.find_by_sql(query)
